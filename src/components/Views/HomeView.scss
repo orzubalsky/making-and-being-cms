@@ -1,0 +1,28 @@
+@import 'base';
+
+.Header {
+  text-align: center; 
+  padding: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: $color_background;
+  /* border-bottom: 1px solid lighten($color_body, 40); */
+  z-index: 1;
+
+  @include for-desktop-up() {
+    position: relative;
+    padding: 2rem 0;
+  }
+
+
+  h1 {
+    font-size: $type_mobile_size_header;
+    text-transform: uppercase;
+    margin: 0.5rem 0;
+
+    @include for-desktop-up() {
+      font-size: $type_desktop_size_header;      
+    }    
+  }
+}

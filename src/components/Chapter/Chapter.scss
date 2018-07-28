@@ -1,0 +1,118 @@
+@import 'base';
+
+.Chapter {  
+  padding: 4rem 0 6rem;
+
+  &:last-child {
+    padding: 4rem 0 0;
+  }
+}
+
+.Chapter__header,
+.Chapter__content {
+  padding: 0 2rem;
+}
+
+.Chapter__header {
+  margin: 0 0 4rem;
+  padding: 20rem 0 1rem;
+  text-align: center;
+  background: $color_body;
+  color: $color_background;
+  background: linear-gradient(to bottom, $color_background 0%, $color_body 100%);
+
+  @include for-tablet-portrait-up() {
+    padding: 10rem 0 1rem;  
+  }
+
+  @include for-desktop-up() {
+    color: $color_body;
+    background: $color_background;
+  }
+
+
+  .Chapter__number {
+    font-size: 20rem;
+    margin: 0;
+    line-height: 1;
+  }
+
+  .Chapter__name {
+    font-size: $type_mobile_size_subheader;
+    font-weight: 700;
+    margin: 0;
+
+    @include for-desktop-up() {
+      display: inline-block;
+      border-bottom: 3px dotted;
+    }
+  }
+}
+
+.Chapter__content {
+  padding: 2rem;
+  margin: 2rem 0 0 0;
+
+  @include for-tablet-portrait-up() {
+    max-width: 60rem;
+    margin: 2rem auto 0;
+  }
+
+  @include for-desktop-up() {
+    max-width: 80rem;
+  }
+}
+
+.List {
+  margin: 0;
+}
+
+.List__header {
+  font-size: $type_mobile_size_body;
+  font-weight: 400;
+  margin: 0;
+  padding: 6.4rem 2rem 0.4rem;
+  border-bottom: 1px solid $color_body;
+  background-color: $color_body;
+  color: $color_background;
+  text-align: left;
+
+  @include for-tablet-portrait-up() {  
+    font-size: $type_tablet_size_body;
+  }
+  
+  @include for-desktop-up() {   
+    text-align: center;
+    color: $color_body;
+    background-color: $color_background;    
+  }
+
+  span {
+    @include for-desktop-up() {
+      max-width: 120rem;
+      margin: 0 auto;
+      display: block;
+    }    
+  }
+}
+
+.List__items {
+  .Item {
+    padding: 2rem;
+    text-align: left;
+    border-bottom: 1px solid lighten($color_body, 40);
+  }
+
+  .ItemHeader,
+  .ResourceItem__content {
+    @include for-desktop-up() {
+      max-width: 120rem;
+      margin: 0 auto;
+    }        
+  }
+
+  .ItemHeader__name {
+    font-weight: 700;
+  }
+}
+

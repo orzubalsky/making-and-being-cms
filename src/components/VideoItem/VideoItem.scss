@@ -1,0 +1,28 @@
+@import 'base';
+
+.Video {
+  display: block;
+  margin: 0;
+
+  @include for-tablet-portrait-up() {
+    margin: 10rem auto 0;
+    padding: 0 2rem;
+    max-width: 80rem;
+  }  
+}
+
+.Video__ratio {
+  padding-top: 56.25%;
+  height: 0;
+  position: relative;
+
+  .iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+  }  
+}

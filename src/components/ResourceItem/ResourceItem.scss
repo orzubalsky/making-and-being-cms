@@ -1,0 +1,15 @@
+@import 'base';
+
+.ResourceItem {
+
+}
+
+.ResourceItem__content {
+  p {
+    margin: 0;
+  }
+
+  @include for-tablet-portrait-up() {
+    max-width: 60rem;
+  }  
+}

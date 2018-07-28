@@ -1,0 +1,8 @@
+@import 'base';
+
+.Item {
+  border-bottom: 1px solid $color_body;
+  padding: 0 2rem 0 4rem;
+  display: flex;
+  flex-flow: column nowrap;
+}

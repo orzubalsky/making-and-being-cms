@@ -1,0 +1,11 @@
+@import 'base';
+
+.ChapterItem {
+  padding: 2rem 2rem 0 2rem;
+}
+
+.ChapterItem__name {
+  margin: 0 0 2rem;
+  font-size: $type_mobile_size_subheader;
+  font-weight: 700;
+}

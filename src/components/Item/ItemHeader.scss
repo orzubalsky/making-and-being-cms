@@ -1,0 +1,34 @@
+@import 'base';
+
+.ItemHeader {
+  flex: 1;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;    
+}
+
+.ItemHeader__cell {
+  display: flex;
+  flex-flow: row nowrap;
+  flex-grow: 1;
+  flex-basis: 0;
+  word-break: break-word;
+  min-width: 0;
+  white-space: nowrap;
+  margin: 0;
+  font-weight: 400;
+}
+
+.ItemHeader__name {
+  font-size: $type_mobile_size_body;
+  font-weight: 400;
+  flex: 0 0 75%;
+
+  @include for-tablet-portrait-up() {
+    font-size: $type_tablet_size_body;
+  }
+}
+
+.ItemHeader__media {
+  flex: 0;
+}
