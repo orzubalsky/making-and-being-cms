@@ -20,7 +20,7 @@ html {
 body {
   line-height: $type_mobile_leading_body;
   font-size: $type_mobile_size_body;
-  font-family: $type_font_normal;
+  font-family: $type_font_body;
   color: $color_body;
   display: flex;
   height: 100%;
@@ -36,5 +36,5 @@ body {
   @include for-desktop-up() {
     line-height: $type_desktop_leading_body;
     font-size: $type_desktop_size_body;
-  }  
+  }
 }
