@@ -1,10 +1,21 @@
 @import 'base';
 
 .Chapter {
-  padding: 4rem 0 6rem;
+  padding: 0;
+  position: relative;
+  text-align: left;
 
-  &:last-child {
-    padding: 4rem 0 0;
+  &.Chapter--collapsed {
+    .Chapter__content {
+      max-height: 25rem;
+      overflow: hidden;
+
+      &:after {
+        content: '';
+        @include cover();
+        background: linear-gradient(180deg,rgba(0,0,0,0) 0%, rgba(255,255,255,1));
+      }
+    }
   }
 }
 
@@ -14,15 +25,13 @@
 }
 
 .Chapter__header {
-  margin: 0 0 4rem;
-  padding: 20rem 0 1rem;
-  text-align: center;
+  margin: 0 0 1rem;
   color: $color_body;
   background: $color_background;
   /* background: linear-gradient(to bottom, $color_background 0%, $color_body 100%); */
 
   @include for-tablet-portrait-up() {
-    padding: 10rem 0 1rem;
+    padding: 6rem 0 1rem;
   }
 
   @include for-desktop-up() {
@@ -31,32 +40,21 @@
 
 
   .Chapter__number {
-    font-family: $type_font_headers;
-    font-size: 20rem;
-    margin: 0;
-    line-height: 1;
+    display: none;
   }
 
   .Chapter__name {
-    font-size: $type_mobile_size_subheader;
-    font-weight: 700;
-    padding: 0 2rem;
-    margin: 0;
-
-    @include for-desktop-up() {
-      display: inline-block;
-      border-bottom: 3px dotted;
-    }
+    @include sectionHeader();
   }
 }
 
 .Chapter__content {
   padding: 2rem;
-  margin: 2rem 0 0 0;
+  position: relative;
 
   @include for-tablet-portrait-up() {
     max-width: 60rem;
-    margin: 2rem auto 0;
+    margin: 0 auto;
   }
 
   @include for-desktop-up() {

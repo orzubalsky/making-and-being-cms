@@ -5,3 +5,22 @@
   width: 100%;
   height: 100%;
 }
+
+@mixin sectionHeader() {
+  font-family: $type_font_headers;
+  font-size: 3rem;
+  margin: 0;
+  line-height: 1;
+}
+
+@mixin sectionSubheader() {
+  font-size: $type_mobile_size_subheader;
+  font-weight: 700;
+  padding: 0 2rem;
+  margin: 0;
+
+  @include for-desktop-up() {
+    display: inline-block;
+    border-bottom: 3px dotted;
+  }
+}

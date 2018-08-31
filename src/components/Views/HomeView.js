@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ItemList from 'components/ItemList/ItemList'
-import ChapterList from 'components/ChapterList/ChapterList'
+import SectionList from 'components/SectionList/SectionList'
 import './HomeView.scss'
 
 class HomeView extends React.Component {
@@ -15,7 +14,7 @@ class HomeView extends React.Component {
             </a>
           </h1>
         </header>
-        <ChapterList />
+        <SectionList />
       </div>
     )
   }

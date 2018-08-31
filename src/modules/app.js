@@ -50,8 +50,8 @@ const ACTION_HANDLERS = {
         events: TYPES.EVENT
       }
 
-      return { 
-        ...object, 
+      return {
+        ...object,
         parent: { id: parseInt(chapter.id), name: chapter.name },
         type: types[type]
       }
@@ -59,7 +59,7 @@ const ACTION_HANDLERS = {
 
     // items will be a flat array of all content elements (chapter, assignments, video, etc)
     const items = _.map(chapters, chapter => {
-      // flatten arrays (activities, assignments, events) and objects (video, podcast) in each chapter 
+      // flatten arrays (activities, assignments, events) and objects (video, podcast) in each chapter
       const flattened = _.flatMap(chapter, (value, type, chapter) => {
         // ignore string values (id, name, position, etc)
         if (!_.isArray(value) && !_.isObject(value)) return null
@@ -70,9 +70,9 @@ const ACTION_HANDLERS = {
           : assignMetadata(value, chapter, type)
       })
 
-      // return flat array of elements in order 
+      // return flat array of elements in order
       // with chapter as an element at the top of each array
-      return [ 
+      return [
         {
           ..._.pick(chapter, ['id', 'name', 'position', 'content', 'media', 'isActive', 'video', 'podcast']),
           type: 'Chapter'
@@ -81,10 +81,27 @@ const ACTION_HANDLERS = {
       ]
     })
 
+    const allItems = _.filter(_.flatMap(items), item => item.isActive && item.type !== TYPES.VIDEO && item.type !== TYPES.PODCAST)
+
+    const allChapters = _.chain(chapters)
+      .filter(c => c.isActive)
+      .sortBy(c => c.order)
+      .keyBy('id')
+      .value()
+
+    const allSections =  _.chain(allChapters)
+      .groupBy(chapter => chapter.section && chapter.section.id)
+      .mapValues(chapters => ({ chapters: _.sortBy(chapters, c => c.order),  ..._.head(chapters).section }))
+      .sortBy(section => section.order)
+      .keyBy(section => section.id)
+      .value()
+
+
     return {
       ...state,
-      chapters: _.keyBy(_.filter(chapters, c => c.isActive), 'id'),
-      items: _.filter(_.flatMap(items), item => item.isActive && item.type !== TYPES.VIDEO && item.type !== TYPES.PODCAST)
+      chapters: allChapters,
+      items: allItems,
+      sections: allSections
     }
   }
 }
@@ -104,7 +121,8 @@ export const appReducer = (state = initialState, action) => {
     chapters: (state = {}) => state,
     navigation: navigation.reducer,
     isLoaded: (state = true) => state,
-    items: (state = []) => state
+    items: (state = []) => state,
+    sections: (state = {}) => state,
   })
 
   const intermediateState = combinedReducer(state, action)
@@ -118,7 +136,8 @@ export const appReducer = (state = initialState, action) => {
 // ------------------------------------
 export const getModule = state => state.app
 export const getProp = (state, prop, defaultVal) => _.get(getModule(state), prop, defaultVal)
-export const getChapters = state => _.sortBy(getProp(state, 'chapters'), c => c.position)
+export const getChapters = state => _.sortBy(getProp(state, 'chapters'), c => c.order)
+export const getSections = state => _.sortBy(getProp(state, 'sections'), s => s.order)
 export const getItems = state => getProp(state, 'items')
 export const getBrowser = state => state.browser
 
