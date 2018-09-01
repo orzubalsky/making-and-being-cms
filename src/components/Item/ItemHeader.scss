@@ -4,7 +4,7 @@
   flex: 1;
   display: flex;
   flex-flow: row nowrap;
-  align-items: center;    
+  align-items: center;
 }
 
 .ItemHeader__cell {
@@ -31,4 +31,12 @@
 
 .ItemHeader__media {
   flex: 0;
+
+  i {
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 }

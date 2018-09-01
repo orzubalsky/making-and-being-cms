@@ -10,7 +10,9 @@ class ItemHeader extends React.Component {
       <div className='ItemHeader'>
         <h3 className='ItemHeader__name ItemHeader__cell'>{name}</h3>
         <h3 className='ItemHeader__type ItemHeader__cell'>{type}</h3>
-        <h3 className='ItemHeader__media ItemHeader__cell'>[]</h3>
+        <h3 className='ItemHeader__media ItemHeader__cell'>
+          <i className='far fa-file' />
+        </h3>
       </div>
     )
   }

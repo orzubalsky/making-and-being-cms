@@ -82,11 +82,8 @@
   font-size: $type_mobile_size_body;
   font-weight: 400;
   margin: 0;
-  padding: 6.4rem 2rem 0.4rem;
-  border-bottom: 1px solid $color_body;
-  background-color: $color_body;
-  color: $color_background;
-  text-align: left;
+  padding: 1rem 2rem;
+  background-color: $color_highlight;
 
   @include for-tablet-portrait-up() {
     font-size: $type_tablet_size_body;
@@ -94,8 +91,6 @@
 
   @include for-desktop-up() {
     text-align: center;
-    color: $color_body;
-    background-color: $color_background;
   }
 
   span {
@@ -109,9 +104,8 @@
 
 .List__items {
   .Item {
-    padding: 2rem;
-    text-align: left;
-    border-bottom: 1px solid lighten($color_body, 10);
+    padding: 1rem 2rem 1rem 4rem;
+    border-bottom: 1px solid #e6e6e6;
   }
 
   .ItemHeader,

@@ -11,10 +11,10 @@ class ResourceItem extends React.Component {
     return (
       <Item type={item.type} className='ResourceItem'>
         <ItemHeader {...item} />
-        <div  
+        <div
           className='ResourceItem__content'
-          dangerouslySetInnerHTML={{ __html: item.content }} 
-        />        
+          dangerouslySetInnerHTML={{ __html: item.content }}
+        />
       </Item>
     )
   }

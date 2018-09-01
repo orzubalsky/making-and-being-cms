@@ -43,7 +43,7 @@ class Chapter extends React.Component {
           />
           {hasAssignments && isExpanded
             ? <div className='List'>
-              <h3 className='List__header'><span>Assignments</span></h3>
+              <h3 className='List__header'><span>{item.name} // Assignments</span></h3>
               <div className='List__items'>
                 {item.assignments.map(item => <ResourceItem key={item.id} item={item} />)}
               </div>
@@ -52,7 +52,7 @@ class Chapter extends React.Component {
           }
           {hasActivities && isExpanded
             ? <div className='List'>
-              <h3 className='List__header'><span>Activities</span></h3>
+              <h3 className='List__header'><span>{item.name} // Activities</span></h3>
               <div className='List__items'>
                 {item.activities.map(item => <ResourceItem key={item.id} item={item} />)}
               </div>
@@ -61,7 +61,7 @@ class Chapter extends React.Component {
           }
           {hasEvents && isExpanded
             ? <div className='List'>
-              <h3 className='List__header'><span>Events</span></h3>
+              <h3 className='List__header'><span>{item.name} // Events</span></h3>
               <div className='List__items'>
                 {item.events.map(item => <EventItem key={item.id} item={item} />)}
               </div>
