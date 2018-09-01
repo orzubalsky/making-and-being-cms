@@ -65,7 +65,7 @@
   }
 
   @include for-tablet-portrait-up() {
-    max-width: 60rem;
+    max-width: 80rem;
     margin: 0 auto;
   }
 
@@ -91,6 +91,7 @@
 
   @include for-desktop-up() {
     text-align: center;
+    font-size: $type_desktop_size_body;
   }
 
   span {
@@ -105,7 +106,7 @@
 .List__items {
   .Item {
     padding: 1rem 2rem 1rem 4rem;
-    border-bottom: 1px solid #e6e6e6;
+    border-bottom: 1px solid $color_border;
   }
 
   .ItemHeader,

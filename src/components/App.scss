@@ -11,8 +11,6 @@ p {
 
 html {
   font-size: 62.5%;
-  height: 100%;
-  width: 100%;
   margin: 0;
   padding: 0;
 }
@@ -23,10 +21,9 @@ body {
   font-family: $type_font_body;
   color: $color_body;
   display: flex;
-  height: 100%;
-  width: 100%;
   margin: 0;
   padding: 0;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAP0lEQVQoU43M2QkAIAwEUdPG9l/btqFEUDxyzfdjpBUi2SVzigBICBfSmQtP5MIXmdBCH/TQBSO0YYYmrCCFA5ZUJ7zWQizKAAAAAElFTkSuQmCC);
 
   @include for-tablet-portrait-up() {
     line-height: $type_tablet_leading_body;
