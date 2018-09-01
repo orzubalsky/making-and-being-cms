@@ -1,14 +1,17 @@
 @import 'base';
 
 .Header {
-  text-align: center; 
-  padding: 0;
+  padding: 0 2rem;
   position: fixed;
   top: 0;
   width: 100%;
-  background: $color_background;
-  /* border-bottom: 1px solid lighten($color_body, 40); */
+  background: $color_highlight;
   z-index: 1;
+
+  @include for-tablet-portrait-up() {
+    padding: 0;
+    text-align: center;
+  }
 
   @include for-desktop-up() {
     position: relative;
@@ -17,12 +20,17 @@
 
 
   h1 {
-    font-size: $type_mobile_size_header;
+    font-size: $type_mobile_size_body;
     text-transform: uppercase;
     margin: 0.5rem 0;
 
+
+    @include for-tablet-portrait-up() {
+      font-size: $type_tablet_size_body;
+    }
+
     @include for-desktop-up() {
-      font-size: $type_desktop_size_header;      
-    }    
+      font-size: $type_desktop_size_header;
+    }
   }
 }

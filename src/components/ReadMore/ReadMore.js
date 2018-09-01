@@ -4,12 +4,17 @@ import './ReadMore.scss'
 
 class ReadMore extends React.Component {
   render () {
-    const { isVisible, onClick } = this.props
+    const { isExpanded, isVisible, onClick } = this.props
 
-    if (!isVisible) return null
+    if (!isVisible) return null;
+
+    const className = [
+      'ReadMore',
+      isExpanded ? 'ReadMore--collapse' : null
+    ].join(' ')
 
     return (
-      <div className='ReadMore' onClick={() => this.props.onClick()}>
+      <div className={className} onClick={() => this.props.onClick()}>
         <i className='ReadMore__icon fas fa-arrow-down' />
       </div>
     )
@@ -17,11 +22,13 @@ class ReadMore extends React.Component {
 }
 
 ReadMore.propTypes = {
+  isExpanded: PropTypes.bool.isRequired,
   isVisible: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired
 }
 
 ReadMore.defaultProps = {
+  isExpanded: false,
   isVisible: true
 }
 

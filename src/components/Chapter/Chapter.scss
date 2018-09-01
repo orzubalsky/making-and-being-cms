@@ -4,6 +4,13 @@
   padding: 0;
   position: relative;
   text-align: left;
+  border-bottom: 0.5rem solid $color_highlight;
+  margin: 0 0 3rem;
+
+  &:last-child {
+    border-bottom: none;
+    margin: 0;
+  }
 
   &.Chapter--collapsed {
     .Chapter__content {
@@ -31,7 +38,7 @@
   /* background: linear-gradient(to bottom, $color_background 0%, $color_body 100%); */
 
   @include for-tablet-portrait-up() {
-    padding: 6rem 0 1rem;
+    text-align: center;
   }
 
   @include for-desktop-up() {
@@ -49,8 +56,13 @@
 }
 
 .Chapter__content {
-  padding: 2rem;
+  padding: 2rem 2rem 2rem 4rem;
   position: relative;
+
+  &:after {
+    transition: all 0.2;
+    background: linear-gradient(180deg,rgba(0,0,0,0) 0%, rgba(255,255,255,0));
+  }
 
   @include for-tablet-portrait-up() {
     max-width: 60rem;

@@ -48,6 +48,7 @@ class Section extends React.Component {
         {this.renderContent()}
         <ReadMore
           onClick={() => this.setState({ isExpanded: !isExpanded })}
+          isExpanded={isExpanded}
           isVisible={item.isGrouped && !isExpanded}
         />
       </div>

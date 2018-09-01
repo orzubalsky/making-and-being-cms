@@ -70,7 +70,7 @@ class Chapter extends React.Component {
           }
         <ReadMore
           onClick={() => this.setState({ isExpanded: !isExpanded })}
-          isVisible={!isExpanded}
+          isExpanded={isExpanded}
         />
       </div>
     )

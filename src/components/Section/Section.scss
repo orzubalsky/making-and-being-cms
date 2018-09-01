@@ -5,9 +5,14 @@
   margin: 0;
   text-align: left;
   position: relative;
+  border-bottom: 0.5rem solid $color_highlight;
 
   &.Section--collapsed {
     margin: 0 0 3rem;
+
+    &:last-child {
+      margin: 3rem 0 0;
+    }
 
     .Section__header {
       margin: 0;
@@ -16,12 +21,13 @@
 
   .Section__header {
     margin: 0 0 6rem;
-    padding: 0 2rem;
+    padding: 0 6rem 0 2rem;
     color: $color_body;
     background: $color_background;
     /* background: linear-gradient(to bottom, $color_background 0%, $color_body 100%); */
 
     @include for-tablet-portrait-up() {
+      text-align: center;
     }
 
     @include for-desktop-up() {

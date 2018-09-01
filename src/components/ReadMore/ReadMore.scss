@@ -1,9 +1,16 @@
 @import 'base';
 
 .ReadMore {
-  text-align: center;
+  text-align: right;
+  transition: all 0.2s;
 
   i {
     padding: 2rem;
+  }
+
+  &.ReadMore--collapse {
+    i {
+      transform: rotate(180deg);
+    }
   }
 }
