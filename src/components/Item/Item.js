@@ -4,7 +4,7 @@ import './Item.scss'
 
 class Item extends React.Component {
   render () {
-  	const { children, type } = this.props
+  	const { children, id, type } = this.props
 
   	const className = [
       'Item',
@@ -12,7 +12,7 @@ class Item extends React.Component {
   	].join(' ')
 
     return (
-      <div className={className}>
+      <div className={className} id={id}>
         {children}
       </div>
     )
@@ -22,6 +22,7 @@ class Item extends React.Component {
 Item.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string.isRequired,
+  id: PropTypes.string,
   type: PropTypes.string
 }
 

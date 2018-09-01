@@ -9,7 +9,7 @@ class EventItem extends React.Component {
     const { item } = this.props
 
     return (
-	   <Item type={item.type} className='EventItem'>
+	   <Item type={item.type} className='EventItem' id={item.slug}>
         <ItemHeader {...item} />
       </Item>
     )

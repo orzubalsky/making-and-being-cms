@@ -9,7 +9,7 @@ class ResourceItem extends React.Component {
     const { item } = this.props
 
     return (
-      <Item type={item.type} className='ResourceItem'>
+      <Item type={item.type} className='ResourceItem' id={item.slug}>
         <ItemHeader {...item} />
         <div
           className='ResourceItem__content'

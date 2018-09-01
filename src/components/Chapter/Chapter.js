@@ -28,7 +28,7 @@ class Chapter extends React.Component {
 
 
     return (
-      <div className={className}>
+      <div className={className} id={item.slug}>
         <div className='Chapter__header'>
           <h3 className='Chapter__number'>
             {`${item.position}`}

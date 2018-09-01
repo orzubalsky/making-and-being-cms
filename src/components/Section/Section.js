@@ -43,7 +43,7 @@ class Section extends React.Component {
     ].join(' ')
 
     return (
-      <div className={className}>
+      <div className={className} id={item.slug}>
         { item.isGrouped  ? this.renderHeader() : null }
         {this.renderContent()}
         <ReadMore

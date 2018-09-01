@@ -1,20 +1,20 @@
 @import 'base';
 
 .Header {
-  padding: 0 2rem;
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 100vw;
+  max-width: 120rem;
   background: $color_highlight;
+  opacity: 0.95;
   z-index: 1;
+  padding: 0;
 
   @include for-tablet-portrait-up() {
-    padding: 0;
     text-align: center;
   }
 
   @include for-desktop-up() {
-    position: relative;
     padding: 1rem 0;
   }
 
@@ -23,9 +23,10 @@
     font-size: $type_mobile_size_body;
     text-transform: uppercase;
     margin: 0.5rem 0;
-
+    padding: 0 0 0 2rem;
 
     @include for-tablet-portrait-up() {
+      padding: 0;
       font-size: $type_tablet_size_body;
     }
 
@@ -34,4 +35,115 @@
       margin: 0;
     }
   }
+}
+
+.Header__toggle-Nav {
+  display: inline-block;
+  position: absolute;
+  top: 0.5rem;
+  right: 2rem;
+  z-index: 20;
+
+  &:hover {
+    i {
+      opacity: 1;
+    }
+  }
+
+  @include for-tablet-portrait-up() {
+    padding: .5rem 2rem;
+    top: 0;
+    right: 0;
+  }
+
+  @include for-desktop-up() {
+    padding: 1.5rem 2rem;
+  }
+
+  i {
+    opacity: 0.7;
+  }
+
+}
+
+.Header__Nav {
+  display: none;
+  position: fixed;
+  background: rgba(250,250,250,0.97);
+  border-bottom: 1rem solid yellow;
+  width: 100vw;
+  top: 0;
+  z-index: 10;
+  overflow: auto;
+
+  @include for-tablet-portrait-up {
+    display: block;
+    height: 100%;
+    right: -100%;
+    top: 0;
+    position: fixed;
+    width: 25vw;
+    min-width: 40rem;
+    transition: all 0.2s;
+  }
+
+  @media print {
+    display: none;
+  }
+
+  ul {
+    margin: 2rem;
+    padding: 0 2rem;
+  }
+}
+
+.Header__Nav,
+.Nav__header {
+  text-align: left;
+}
+
+.Header--open {
+  .Header__Nav {
+    @include for-phone-only {
+      display: block;
+    }
+
+    @include for-tablet-portrait-up {
+      right: 0;
+    }
+  }
+
+  .Header__toggle-Nav {
+    background: transparent;
+    opacity: 0.7;
+  }
+}
+
+.Nav__header {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.Nav__item {
+
+}
+
+.sublist {
+  padding: 0 0 0 2rem;
+  margin: 0 0 1rem 0;
+  font-size: 1.8rem;
+}
+
+.sublist__item {
+  &:hover {
+    list-style-type: disc;
+
+    a {
+      font-weight: 100;
+    }
+  }
+}
+
+.sublist__item--active {
+  list-style-type: disc;
 }

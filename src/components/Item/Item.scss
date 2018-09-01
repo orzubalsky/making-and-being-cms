@@ -3,4 +3,16 @@
 .Item {
   border-bottom: 1px solid $color_body;
   padding: 0 2rem 0 4rem;
+
+  i {
+    opacity: 0.5;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    i {
+      opacity: 1;
+    }
+  }
 }
