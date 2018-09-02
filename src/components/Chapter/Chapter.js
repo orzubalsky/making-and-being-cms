@@ -12,6 +12,20 @@ class Chapter extends React.Component {
     this.state = { isExpanded: false }
   }
 
+  renderSubsection (section, index) {
+    return (
+      <div className='Subsection' id={section.slug} key={section.slug}>
+        { section.isnamevisible
+          ? <h3 className='Subsection__name'>
+              {`${section.name}`}
+            </h3>
+          : null
+        }
+        <div className='Subsection__content' dangerouslySetInnerHTML={{ __html: section.content }} />
+      </div>
+    )
+  }
+
   render () {
     const { item } = this.props
     const { isExpanded } = this.state
@@ -37,11 +51,10 @@ class Chapter extends React.Component {
             {`${item.name}`}
           </h2>
         </div>
-          <div
-            className='Chapter__content'
-            dangerouslySetInnerHTML={{ __html: item.content }}
-          />
-          {hasAssignments && isExpanded
+          <div className='Chapter__content'>
+            {item.subsections.map((section, i) => this.renderSubsection(section, i))}
+          </div>
+          {hasAssignments
             ? <div className='List'>
               <h3 className='List__header'><span>{item.name} // Assignments</span></h3>
               <div className='List__items'>
@@ -50,7 +63,7 @@ class Chapter extends React.Component {
             </div>
             : null
           }
-          {hasActivities && isExpanded
+          {hasActivities
             ? <div className='List'>
               <h3 className='List__header'><span>{item.name} // Activities</span></h3>
               <div className='List__items'>
@@ -59,7 +72,7 @@ class Chapter extends React.Component {
             </div>
             : null
           }
-          {hasEvents && isExpanded
+          {hasEvents
             ? <div className='List'>
               <h3 className='List__header'><span>{item.name} // Events</span></h3>
               <div className='List__items'>

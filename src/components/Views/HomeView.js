@@ -98,8 +98,8 @@ class HomeView extends React.Component {
       <div>
         <header className={className}>
           <h1>
-            <a href=''>
-              Ways of Being
+            <a href='/'>
+              Making and Being
             </a>
           </h1>
           {this.renderToggleButton()}

@@ -21,16 +21,20 @@
       position: absolute;
     }
 
-    .Chapter__content {
-      max-height: 25rem;
-      overflow: hidden;
+    .Subsection__content {
+      display: none;
+    }
 
+    .Chapter__content {
       &:after {
         content: '';
         @include cover();
         background: linear-gradient(180deg,rgba(255,255,255,0) 0%, rgba(255,255,255,1));
       }
     }
+  }
+
+  .Subsection {
   }
 }
 
