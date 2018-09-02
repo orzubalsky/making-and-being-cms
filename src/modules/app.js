@@ -15,6 +15,7 @@ const MODULE = 'APP'
 const FETCH_REQUESTED = `${MODULE}/FETCH/REQUESTED`
 const MOUNT_REQUESTED = `${MODULE}/MOUNT/REQUESTED`
 const UPDATE = `${MODULE}/UPDATED`
+const UPDATE_ITEM = `${MODULE}/ITEM/UPDATED`
 const UPDATE_ITEMS = `${MODULE}/ITEMS/UPDATED`
 
 // ------------------------------------
@@ -23,6 +24,7 @@ const UPDATE_ITEMS = `${MODULE}/ITEMS/UPDATED`
 export const fetchRequested = actionCreator(FETCH_REQUESTED, 'payload')
 export const mountRequested = actionCreator(MOUNT_REQUESTED, 'payload')
 export const update = actionCreator(UPDATE, 'payload')
+export const updateItem = actionCreator(UPDATE_ITEM, 'payload')
 export const updateItems = actionCreator(UPDATE_ITEMS, 'payload')
 
 // ------------------------------------
@@ -33,6 +35,32 @@ const ACTION_HANDLERS = {
     return {
       ...state,
       ...action.payload
+    }
+  },
+  [UPDATE_ITEM] : (state, action) => {
+    const { item, options } = action.payload
+
+    const sections = item.type === 'section'
+    ? {
+        ...state.sections,
+        [ item.id ] : {
+          ...state.sections[item.id],
+          ...options
+        }
+      }
+    : {
+      ...state.sections,
+      [ parseInt(item.section.id) ] : {
+        ...state.sections[ parseInt(item.section.id) ],
+        chapters: _.map(...state.sections[ parseInt(item.section.id) ].chapters, chapter =>
+          chapter.id === item.id ? ({ ...chapter, ...options }) : item
+        )
+      }
+    }
+
+    return {
+      ...state,
+      sections: sections
     }
   },
   [UPDATE_ITEMS] : (state, action) => {
@@ -85,13 +113,14 @@ const ACTION_HANDLERS = {
 
     const allChapters = _.chain(chapters)
       .filter(c => c.isActive)
+      .map(c => ({ ...c, type: 'chapter' }))
       .sortBy(c => c.order)
       .keyBy('id')
       .value()
 
     const allSections =  _.chain(allChapters)
       .groupBy(chapter => chapter.section && chapter.section.id)
-      .mapValues(chapters => ({ chapters: _.sortBy(chapters, c => c.order),  ..._.head(chapters).section }))
+      .mapValues(chapters => ({ chapters: _.sortBy(chapters, c => c.order), type: 'section', ..._.head(chapters).section }))
       .sortBy(section => section.order)
       .keyBy(section => section.id)
       .value()
@@ -140,6 +169,10 @@ export const getChapters = state => _.sortBy(getProp(state, 'chapters'), c => c.
 export const getSections = state => _.sortBy(getProp(state, 'sections'), s => s.order)
 export const getItems = state => getProp(state, 'items')
 export const getBrowser = state => state.browser
+export const getIsSectionExpanded = (state, id) => _.chain(getSections(state))
+  .find(s => s.id === id)
+  .get('isExpanded', false)
+  .value()
 
 // ------------------------------------
 // Sagas

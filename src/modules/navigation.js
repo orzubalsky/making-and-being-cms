@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { all, call, put, select, takeEvery } from 'redux-saga/effects'
+import * as app from 'modules/app'
 import { actionCreator } from 'utils/common.js'
 
 // ------------------------------------
@@ -61,7 +62,14 @@ export const getPathname = state => _.get(getLocation(state), 'pathname')
 // ------------------------------------
 // Sagas
 // ------------------------------------
-export function * pageUpdated (action) {}
+export function * pageUpdated (action) {
+  const { slug, type } = action.payload
+
+  const items = yield select(type === 'chapter' ? app.getChapters : app.getSections)
+  const item = _.find(items, i => i.slug === slug)
+
+  yield put(app.updateItem({ item, options: { isExpanded: true }}))
+}
 
 // ------------------------------------
 // Saga Watchers

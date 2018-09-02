@@ -1,19 +1,36 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import * as app from 'modules/app'
 import Item from 'components/Item/Item'
 import ReadMore from 'components/ReadMore/ReadMore'
 import ChapterList from 'components/ChapterList/ChapterList'
 import './Section.scss'
 
+const mapDispatchToProps = {
+  updateItem: (item, options) => app.updateItem({ item, options })
+}
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isExpanded: app.getIsSectionExpanded(state, ownProps.item.id)
+  }
+}
+
 class Section extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { isExpanded: false }
+    this.updateIsExpanded = this.updateIsExpanded.bind(this)
+  }
+
+  updateIsExpanded () {
+    const { isExpanded, item, updateItem } = this.props
+
+    updateItem(item, { isExpanded: !isExpanded })
   }
 
   renderHeader () {
-    const { item } = this.props
-    const { isExpanded } = this.state
+    const { isExpanded, item } = this.props
 
     return (
       <div className='Section__header'>
@@ -25,8 +42,7 @@ class Section extends React.Component {
   }
 
   renderContent () {
-    const { item } = this.props
-    const { isExpanded } = this.state
+    const { isExpanded, item } = this.props
 
     if (item.isGrouped && !isExpanded) return
 
@@ -34,8 +50,7 @@ class Section extends React.Component {
   }
 
   render () {
-    const { item } = this.props
-    const { isExpanded } = this.state
+    const { isExpanded, item } = this.props
 
     const className = [
       'Section',
@@ -47,7 +62,7 @@ class Section extends React.Component {
         { item.isGrouped  ? this.renderHeader() : null }
         {this.renderContent()}
         <ReadMore
-          onClick={() => this.setState({ isExpanded: !isExpanded })}
+          onClick={() => this.updateIsExpanded()}
           isExpanded={isExpanded}
           isVisible={item.isGrouped && !isExpanded}
         />
@@ -57,10 +72,11 @@ class Section extends React.Component {
 }
 
 Section.propTypes = {
+  isExpanded: PropTypes.bool.isRequired,
   item: PropTypes.object.isRequired
 }
 
 Section.defaultProps = {
 }
 
-export default Section
+export default connect(mapStateToProps, mapDispatchToProps)(Section)

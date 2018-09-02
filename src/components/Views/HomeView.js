@@ -2,12 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import * as app from 'modules/app'
-import { getIsNavOpen, updateIsNavOpen } from 'modules/navigation'
+import { getIsNavOpen, updateIsNavOpen, updatePageRequested } from 'modules/navigation'
 import SectionList from 'components/SectionList/SectionList'
 import './HomeView.scss'
 
 const mapDispatchToProps = {
-  updateIsNavOpen: value => updateIsNavOpen(value)
+  updateIsNavOpen: value => updateIsNavOpen(value),
+  updatePage: (slug, type) => updatePageRequested({ slug, type })
 }
 
 const mapStateToProps = state => {
@@ -27,10 +28,11 @@ class HomeView extends React.Component {
   closeNav = () => this.props.updateIsNavOpen(false)
 
   renderNavItem (item, isIncludingChildren = false) {
-    const link = ({ slug, name, isExternal }) => {
+    const link = ({ slug, name, type, isExternal }) => {
       const props = {
         href: `${isExternal ? '' : '#'}${slug}`,
-        target: isExternal ? '_blank' : null
+        target: isExternal ? '_blank' : null,
+        onClick: () => this.props.updatePage(slug, type)
       }
 
       return (

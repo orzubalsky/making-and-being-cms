@@ -12,7 +12,15 @@
     margin: 0;
   }
 
+  .ReadMore--collapse {
+    position: relative;
+  }
+
   &.Chapter--collapsed {
+    .ReadMore--collapse {
+      position: absolute;
+    }
+
     .Chapter__content {
       max-height: 25rem;
       overflow: hidden;
@@ -24,13 +32,6 @@
       }
     }
   }
-
-  &.Chapter--with-list {
-    .ReadMore--collapse {
-      position: relative;
-    }
-  }
-
 }
 
 .Chapter__header,
