@@ -24,9 +24,7 @@
 }
 
 .ItemHeader__media {
-  @include for-tablet-portrait-up() {
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
+  position: absolute;
+  top: 0;
+  right: 0;
 }

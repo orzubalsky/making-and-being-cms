@@ -100,6 +100,17 @@
 .Header__Nav,
 .Nav__header {
   text-align: left;
+  font-family: $type_font_navigation;
+  font-weight: 100;
+  font-size: $type_mobile_size_navigation;
+
+  @include for-tablet-portrait-up {
+    font-size: $type_tablet_size_navigation;
+  }
+
+  @include for-desktop-up {
+    font-size: $type_desktop_size_navigation;
+  }
 }
 
 .Header--open {
@@ -121,29 +132,36 @@
 
 .Nav__header {
   margin: 0;
-  font-size: 1.8rem;
 }
 
-.Nav__item {
+.Nav__item,
+.sublist__item {
+  list-style-type: circle;
 
+  i {
+    margin: 0 0 0 0.5rem;
+    font-size: 1.2rem;
+    position: relative;
+    bottom: 0.1rem;
+    opacity: 0.7;
+  }
+
+  &:hover {
+    list-style-type: disc;
+
+    a {
+      font-weight: 400;
+    }
+  }
+}
+
+.Nav__item--action,
+.sublist__item--active {
+  list-style-type: disc;
 }
 
 .sublist {
   padding: 0 0 0 2rem;
   margin: 0 0 1rem 0;
   font-size: 1.8rem;
-}
-
-.sublist__item {
-  &:hover {
-    list-style-type: disc;
-
-    a {
-      font-weight: 100;
-    }
-  }
-}
-
-.sublist__item--active {
-  list-style-type: disc;
 }

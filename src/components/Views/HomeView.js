@@ -26,22 +26,45 @@ class HomeView extends React.Component {
 
   closeNav = () => this.props.updateIsNavOpen(false)
 
-  renderNavItem (item, children) {
+  renderNavItem (item, isIncludingChildren = false) {
+    const link = ({ slug, name, isExternal }) => {
+      const props = {
+        href: `${isExternal ? '' : '#'}${slug}`,
+        target: isExternal ? '_blank' : null
+      }
+
+      return (
+        <a {...props}>
+          {name}
+          {isExternal
+            ? <i className='fas fa-external-link-alt' />
+            : null
+          }
+        </a>
+      )
+    }
+
+    if (!item.isGrouped && item.chapters) {
+      return _.map(item.chapters, item =>
+        <li className='Nav__item' key={item.slug}>
+          <h2 className='Nav__header'>
+            {link(item)}
+          </h2>
+        </li>
+      )
+    }
+
     return (
       <li className='Nav__item' key={item.slug}>
         <h2 className='Nav__header'>
-          <a href={`#${item.slug}`}>
-            {item.name}
-          </a>
+          {link(item)}
         </h2>
         {
-          item.isGrouped && item.chapters
+          item.isGrouped && item.chapters && isIncludingChildren
           ? <ul className='sublist'>
               {_.map(item.chapters, chapter =>
                 <li className='sublist__item' key={chapter.slug}>
-                  <a href={`#${chapter.slug}`}>
-                    {chapter.name}
-                  </a>
+                  {link(chapter)}
                 </li>
               )}
             </ul>
@@ -74,9 +97,10 @@ class HomeView extends React.Component {
           </div>
           <nav className='Header__Nav' onMouseLeave={this.closeNav}>
             <ul>
-              {this.renderNavItem({ name: 'Pre-Order the Book' })}
-              {this.renderNavItem({ name: 'Play the Card Game' })}
+              {this.renderNavItem({ name: 'Pre-Order the Book', slug: '', isExternal: true})}
+              {this.renderNavItem({ name: 'Play the Card Game', slug: 'http://bfamfaphd.com/cards/', isExternal: true })}
               {_.map(this.props.navItems, item => this.renderNavItem(item))}
+              {this.renderNavItem({ name: 'BFAMFAPHD', slug: 'http://bfamfaphd.com/', isExternal: true })}
             </ul>
           </nav>
         </header>
