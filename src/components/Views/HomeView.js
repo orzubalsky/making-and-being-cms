@@ -74,6 +74,18 @@ class HomeView extends React.Component {
     )
   }
 
+  renderToggleButton () {
+    return (
+      <div
+        className='Header__toggle-Nav'
+        onClick={this.toggleNavigation}
+        onMouseEnter={this.openNav}
+      >
+        <i className={`fas fa-${this.props.isNavOpen ? 'times' : 'bars'}`} />
+      </div>
+    )
+  }
+
   render () {
     const className = [
       'Header',
@@ -88,14 +100,9 @@ class HomeView extends React.Component {
               Ways of Being
             </a>
           </h1>
-          <div
-            className='Header__toggle-Nav'
-            onClick={this.toggleNavigation}
-            onMouseEnter={this.openNav}
-          >
-            <i className={`fas fa-${this.props.isNavOpen ? 'times' : 'bars'}`} />
-          </div>
+          {this.renderToggleButton()}
           <nav className='Header__Nav' onMouseLeave={this.closeNav}>
+            {this.renderToggleButton()}
             <ul>
               {this.renderNavItem({ name: 'Pre-Order the Book', slug: '', isExternal: true})}
               {this.renderNavItem({ name: 'Play the Card Game', slug: 'http://bfamfaphd.com/cards/', isExternal: true })}
