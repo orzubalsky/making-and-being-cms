@@ -5,7 +5,9 @@
   position: relative;
   text-align: left;
   border-bottom: 0.5rem solid $color_highlight;
+  border-bottom: 1px solid #ccc;
   margin: 0 0 3rem;
+  margin: 0;
 
   &:last-child {
     border-bottom: none;
@@ -17,68 +19,114 @@
   }
 
   &.Chapter--collapsed {
-    .ReadMore--collapse {
-      position: absolute;
+    .List {
+      display: none;
     }
 
-    .Subsection__content {
+    .Subsection {
       display: none;
+    }
+
+    .Subsection:first-child {
+      display: none;
+    }
+
+    .ReadMore--collapse {
+      position: absolute;
     }
 
     .Chapter__content {
       &:after {
         content: '';
         @include cover();
-        background: linear-gradient(180deg,rgba(255,255,255,0) 0%, rgba(255,255,255,1));
+        /* background: linear-gradient(180deg,rgba(255,255,255,0) 0%, rgba(255,255,255,1)); */
       }
     }
   }
 
   .Subsection {
+    display: none;
+    padding: 2rem 2rem 0 6rem;
+
+    &:first-child {
+      display: block;
+    }
+
+    .Subsection__name {
+      margin: 0;
+      font-weight: 100;
+      font-size: $type_tablet_size_header;
+    }
   }
 }
 
-.Chapter__header,
+
+.Chapter__header {
+  padding: 1rem 2rem 1rem 4rem;
+}
+
 .Chapter__content {
-  padding: 0 2rem;
+  padding: 0 2rem 0 4rem;
+}
+
+
+#introduction .Chapter__header,
+#acknowledgents .Chapter__header {
+  padding: 1rem 2rem;
+}
+
+#introduction .Chapter__content,
+#acknowledgents .Chapter__content {
+  padding: 2rem 2rem 0 2rem;
+}
+
+#introduction .Chapter--collapsed .Chapter__content,
+#acknowledgents .Chapter--collapsed .Chapter__content {
+  padding: 0;
+}
+
+#introduction .Subsection .Subsection__content {
+  display: block;
 }
 
 .Chapter__header {
   margin: 0 0 1rem;
+  margin: 0;
   color: $color_body;
   background: $color_background;
   /* background: linear-gradient(to bottom, $color_background 0%, $color_body 100%); */
 
   @include for-tablet-portrait-up() {
-    text-align: center;
+
   }
 
   @include for-desktop-up() {
 
   }
 
-
   .Chapter__number {
     display: none;
   }
 
   .Chapter__name {
-    @include sectionHeader();
+    @include chapterHeader();
   }
 }
 
 .Chapter__content {
   padding: 2rem 2rem 2rem 4rem;
+  padding: 0 2rem 0 4rem;
   position: relative;
 
   &:after {
     transition: all 0.2;
-    background: linear-gradient(180deg,rgba(0,0,0,0) 0%, rgba(255,255,255,0));
+    /* background: linear-gradient(180deg,rgba(0,0,0,0) 0%, rgba(255,255,255,0)); */
   }
 
   @include for-tablet-portrait-up() {
     max-width: 80rem;
     margin: 0 auto;
+    margin: 0;
   }
 
   @include for-desktop-up() {
@@ -124,7 +172,8 @@
   font-size: $type_mobile_size_body;
   font-weight: 400;
   margin: 0;
-  padding: 1rem 2rem;
+  padding: 1rem 2rem 1rem 4rem;
+  padding: 0rem 2rem 0rem 10rem;
   background-color: $color_highlight;
 
   @include for-tablet-portrait-up() {
@@ -132,7 +181,6 @@
   }
 
   @include for-desktop-up() {
-    text-align: center;
     font-size: $type_desktop_size_body;
   }
 
@@ -148,6 +196,7 @@
 .List__items {
   .Item {
     padding: 1rem 2rem 1rem 4rem;
+    padding: 1rem 2rem 1rem 10rem;
     border-bottom: 1px solid $color_border;
   }
 

@@ -1,5 +1,9 @@
 @import 'base';
 
 .SectionList {
-  padding: 8rem 0 0 0;
+  padding: 4rem 0 0 0;
+
+  @include for-desktop-up() {
+    padding: 5rem 0 0 0;
+  }
 }

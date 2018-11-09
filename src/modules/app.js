@@ -171,7 +171,7 @@ export const getItems = state => getProp(state, 'items')
 export const getBrowser = state => state.browser
 export const getIsSectionExpanded = (state, id) => _.chain(getSections(state))
   .find(s => s.id === id)
-  .get('isExpanded', false)
+  .get('isExpanded', true)
   .value()
 
 // ------------------------------------

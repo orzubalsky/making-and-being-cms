@@ -3,13 +3,16 @@
 .Section {
   padding: 0;
   margin: 0 0 3rem;
+  margin: 0;
   text-align: left;
   position: relative;
-  border-bottom: 0.5rem solid $color_highlight;
+  border-bottom: 2rem solid $color_highlight;
+  border-bottom: 1rem solid hsl(60, 100%, 79%);
 
   &.Section--collapsed {
     &:last-child {
       margin: 3rem 0 0;
+      margin: 0;
     }
 
     .Section__header {
@@ -20,14 +23,16 @@
 
   .Section__header {
     margin: 0 0 3rem;
+    margin: 0;
     padding: 0 6rem 3rem 2rem;
+    padding: 1rem 6rem 1rem 2rem;
     border-bottom: 1px solid $color_border;
     color: $color_body;
     background: $color_background;
     /* background: linear-gradient(to bottom, $color_background 0%, $color_body 100%); */
 
     @include for-tablet-portrait-up() {
-      text-align: center;
+
     }
 
     @include for-desktop-up() {
