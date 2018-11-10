@@ -26,7 +26,10 @@
     padding: 2rem 6rem 2rem 2rem;
     border-bottom: 1px solid $color_border;
     color: $color_body;
-    background: $color_background;
+    background: rgba($color_background, 0.9);
+    position: sticky;
+    top: 5rem;
+    z-index: 1;
     /* background: linear-gradient(to bottom, $color_background 0%, $color_body 100%); */
 
     @include for-tablet-portrait-up() {

@@ -55,6 +55,7 @@
 #introduction, #acknowledgents {
   .Chapter__header {
     padding: 2rem 2rem;
+    top: 5rem
   }
 
   .Chapter__content {
@@ -70,7 +71,7 @@
   }
 
   .Subsection {
-    padding: 0 2rem 0 16rem
+    padding: 0 10rem 0 42rem
   }
 }
 
@@ -78,7 +79,8 @@
   margin: 0 0 1rem;
   margin: 0;
   color: $color_body;
-  background: $color_background;
+  position: sticky;
+  top: 13rem;
   /* background: linear-gradient(to bottom, $color_background 0%, $color_body 100%); */
 
   @include for-tablet-portrait-up() {
@@ -94,6 +96,7 @@
   }
 
   .Chapter__name {
+    max-width: 32rem;
     @include chapterHeader();
   }
 }
@@ -140,7 +143,7 @@
 
 .Subsection {
   display: none;
-  padding: 0 2rem 0 20rem;
+  padding: 0 10rem 0 40rem;
 
   @include for-tablet-portrait-up() {
     max-width: 80rem;
@@ -166,23 +169,23 @@
 
 
 .List {
-  margin: 0;
+  margin: 0 0 4rem;
+  padding: 0 0 0 44rem;
 }
 
 .List__header {
-  font-size: $type_mobile_size_body;
+  font-size: $type_mobile_size_subheader;
   font-weight: 400;
   margin: 0;
-  padding: 1rem 2rem 1rem 4rem;
-  padding: 0rem 2rem 0rem 24rem;
-  background-color: $color_highlight;
+  padding: 1rem 2rem 1rem 0;
+  border-bottom: 3px solid $color_highlight;
 
   @include for-tablet-portrait-up() {
-    font-size: $type_tablet_size_body;
+    font-size: $type_tablet_size_subheader;
   }
 
   @include for-desktop-up() {
-    font-size: $type_desktop_size_body;
+    font-size: $type_desktop_size_subheader;
   }
 
   span {
@@ -196,9 +199,12 @@
 
 .List__items {
   .Item {
-    padding: 1rem 2rem 1rem 4rem;
-    padding: 1rem 2rem 1rem 24rem;
+    padding: 1rem 2rem 1rem 0;
     border-bottom: 1px solid $color_border;
+
+    &:last-child {
+      border-bottom: none;
+    }
   }
 
   .ItemHeader,
