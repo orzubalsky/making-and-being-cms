@@ -20,7 +20,11 @@
 
   i {
     font-style: normal;
-    padding: 2rem 1rem;
+    padding: 2rem;
+
+    @include for-tablet-portrait-up() {
+      padding: 2rem 1rem;
+    }
   }
 
   &.ReadMore--collapse {

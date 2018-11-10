@@ -50,12 +50,26 @@
 
 .Chapter__header {
   padding: 2rem 2rem 2rem 2rem;
+  background: rgba($color_background, 0.95);
+  z-index: 1;
+
+  @include for-tablet-landscape-up() {
+    background: transparent;
+  }
 }
 
 #introduction, #acknowledgents {
   .Chapter__header {
     padding: 2rem 2rem;
-    top: 5rem
+    top: 3rem;
+
+    @include for-tablet-portrait-up() {
+      top: 4rem
+    }
+
+    @include for-tablet-landscape-up() {
+      top: 5rem
+    }
   }
 
   .Chapter__content {
@@ -71,7 +85,15 @@
   }
 
   .Subsection {
-    padding: 0 10rem 0 42rem
+    padding: 0;
+
+    @include for-tablet-portrait-up() {
+      padding: 0 10rem 0 12rem;
+    }
+
+    @include for-tablet-landscape-up() {
+      padding: 0 10rem 0 42rem;
+    }
   }
 }
 
@@ -80,15 +102,19 @@
   margin: 0;
   color: $color_body;
   position: sticky;
-  top: 13rem;
+  top: 9.5rem;
   /* background: linear-gradient(to bottom, $color_background 0%, $color_body 100%); */
 
   @include for-tablet-portrait-up() {
 
   }
 
-  @include for-desktop-up() {
+  @include for-tablet-landscape-up() {
+    top: 10.5rem
+  }
 
+  @include for-desktop-up() {
+    top: 13rem
   }
 
   .Chapter__number {
@@ -96,8 +122,15 @@
   }
 
   .Chapter__name {
-    max-width: 32rem;
     @include chapterHeader();
+
+    @include for-tablet-landscape-up() {
+      max-width: 28rem;
+    }
+
+    @include for-desktop-up() {
+      max-width: 32rem;
+    }
   }
 }
 
@@ -143,15 +176,20 @@
 
 .Subsection {
   display: none;
-  padding: 0 10rem 0 40rem;
+  padding: 0;
 
   @include for-tablet-portrait-up() {
+    padding: 0 10rem 0 10rem;
     max-width: 80rem;
-    margin: 0 auto;
     margin: 0;
   }
 
+  @include for-tablet-landscape-up() {
+    padding: 0 10rem 0 30rem;
+  }
+
   @include for-desktop-up() {
+    padding: 0 10rem 0 40rem;
     max-width: 80rem;
   }
 
@@ -170,17 +208,30 @@
 
 .List {
   margin: 0 0 4rem;
-  padding: 0 0 0 44rem;
+  padding: 0;
+
+  @include for-tablet-portrait-up() {
+    padding: 0 0 0 14rem;
+  }
+
+  @include for-tablet-landscape-up() {
+    padding: 0 0 0 34rem;
+  }
+
+  @include for-desktop-up() {
+    padding: 0 0 0 44rem;
+  }
 }
 
 .List__header {
   font-size: $type_mobile_size_subheader;
   font-weight: 400;
   margin: 0;
-  padding: 1rem 2rem 1rem 0;
+  padding: 1rem 2rem 1rem 2rem;
   border-bottom: 3px solid $color_highlight;
 
   @include for-tablet-portrait-up() {
+    padding: 1rem 2rem 1rem 0;
     font-size: $type_tablet_size_subheader;
   }
 
@@ -199,8 +250,12 @@
 
 .List__items {
   .Item {
-    padding: 1rem 2rem 1rem 0;
+    padding: 1rem 2rem 1rem 2rem;
     border-bottom: 1px solid $color_border;
+
+    @include for-tablet-portrait-up() {
+      padding: 1rem 2rem 1rem 0;
+    }
 
     &:last-child {
       border-bottom: none;

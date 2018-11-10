@@ -26,10 +26,10 @@
     padding: 2rem 6rem 2rem 2rem;
     border-bottom: 1px solid $color_border;
     color: $color_body;
-    background: rgba($color_background, 0.9);
+    background: rgba($color_background, 0.95);
     position: sticky;
-    top: 5rem;
-    z-index: 1;
+    top: 3rem;
+    z-index: 10;
     /* background: linear-gradient(to bottom, $color_background 0%, $color_body 100%); */
 
     @include for-tablet-portrait-up() {
@@ -37,7 +37,7 @@
     }
 
     @include for-desktop-up() {
-
+      top: 5rem;
     }
 
     .Section__name {

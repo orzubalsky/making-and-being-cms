@@ -1,7 +1,11 @@
 @import 'base';
 
 .SectionList {
-  padding: 4rem 0 0 0;
+  padding: 3rem 0 0 0;
+
+  @include for-tablet-portrait-up() {
+    padding: 4rem 0 0 0;
+  }
 
   @include for-desktop-up() {
     padding: 5rem 0 0 0;

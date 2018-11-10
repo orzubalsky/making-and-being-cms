@@ -8,10 +8,14 @@
 
 @mixin sectionHeader() {
   font-family: $type_font_headers;
-  font-size: $type_tablet_size_header;
+  font-size: $type_mobile_size_header;
   font-weight: 100;
   margin: 0;
   line-height: 1.2;
+
+  @include for-tablet-portrait-up() {
+    font-size: $type_tablet_size_header;
+  }
 
   @include for-desktop-up() {
     font-size: $type_desktop_size_header;
@@ -20,10 +24,18 @@
 
 @mixin chapterHeader() {
   font-family: $type_font_headers;
-  font-size: $type_tablet_size_header;
+  font-size: $type_mobile_size_subheader;
   font-weight: 100;
   margin: 0;
   line-height: 1.4;
+
+  @include for-tablet-portrait-up() {
+    font-size: $type_tablet_size_subheader;
+  }
+
+  @include for-desktop-up() {
+    font-size: $type_desktop_size_subheader;
+  }
 }
 
 @mixin sectionSubheader() {
@@ -31,6 +43,10 @@
   font-weight: 700;
   padding: 0 2rem;
   margin: 0;
+
+  @include for-tablet-portrait-up() {
+    font-size: $type_tablet_size_subheader;
+  }
 
   @include for-desktop-up() {
     display: inline-block;
