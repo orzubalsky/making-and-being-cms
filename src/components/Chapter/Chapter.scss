@@ -28,7 +28,7 @@
     }
 
     .ReadMore {
-      color: rgba($color_body, 0.6);
+      width: auto;
     }
 
     &:hover .ReadMore {
@@ -36,6 +36,8 @@
     }
 
     .Chapter__content {
+      padding: 0 2rem 0 4rem;
+
       &:after {
         content: '';
         @include cover();
@@ -47,27 +49,29 @@
 
 
 .Chapter__header {
-  padding: 1rem 2rem 1rem 4rem;
+  padding: 2rem 2rem 2rem 2rem;
 }
 
-.Chapter__content {
-  padding: 0 2rem 0 4rem;
-}
+#introduction, #acknowledgents {
+  .Chapter__header {
+    padding: 2rem 2rem;
+  }
 
+  .Chapter__content {
+    padding: 2rem 2rem 10rem 2rem;
+  }
 
-#introduction .Chapter__header,
-#acknowledgents .Chapter__header {
-  padding: 1rem 2rem;
-}
+  .Chapter--collapsed .Chapter__content {
+    padding: 0;
+  }
 
-#introduction .Chapter__content,
-#acknowledgents .Chapter__content {
-  padding: 2rem 2rem 0 2rem;
-}
+  .arrow {
+    display: none;
+  }
 
-#introduction .Chapter--collapsed .Chapter__content,
-#acknowledgents .Chapter--collapsed .Chapter__content {
-  padding: 0;
+  .Subsection {
+    padding: 0 2rem 0 16rem
+  }
 }
 
 .Chapter__header {
@@ -95,8 +99,7 @@
 }
 
 .Chapter__content {
-  padding: 2rem 2rem 2rem 4rem;
-  padding: 0 2rem 0 4rem;
+  padding: 0 2rem 10rem 4rem;
   position: relative;
 
   &:after {
@@ -137,7 +140,7 @@
 
 .Subsection {
   display: none;
-  padding: 2rem 2rem 0 6rem;
+  padding: 0 2rem 0 20rem;
 
   @include for-tablet-portrait-up() {
     max-width: 80rem;
@@ -171,7 +174,7 @@
   font-weight: 400;
   margin: 0;
   padding: 1rem 2rem 1rem 4rem;
-  padding: 0rem 2rem 0rem 10rem;
+  padding: 0rem 2rem 0rem 24rem;
   background-color: $color_highlight;
 
   @include for-tablet-portrait-up() {
@@ -194,7 +197,7 @@
 .List__items {
   .Item {
     padding: 1rem 2rem 1rem 4rem;
-    padding: 1rem 2rem 1rem 10rem;
+    padding: 1rem 2rem 1rem 24rem;
     border-bottom: 1px solid $color_border;
   }
 

@@ -1,19 +1,26 @@
 @import 'base';
 
 .ReadMore {
+  width: 100%;
   text-align: right;
   position: absolute;
   bottom: 0;
   right: 0;
   transition: all 0.2s;
+  color: rgba($color_body, 0.6);
+  cursor: pointer;
+
+  &:hover {
+    color: $color_body;
+  }
 
   @include for-desktop-up() {
     right: 0.75rem;
   }
 
   i {
-    padding: 2rem;
-    padding: 1rem;
+    font-style: normal;
+    padding: 2rem 1rem;
   }
 
   &.ReadMore--collapse {

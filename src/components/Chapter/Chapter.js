@@ -70,7 +70,7 @@ class Chapter extends React.Component {
             {`${item.position}`}
           </h3>
           <h2 className='Chapter__name'>
-            {`${item.name}`}
+            <span className='arrow'>&#8627; </span>{`${item.name}`}
           </h2>
         </div>
           <div className='Chapter__content'>
@@ -78,6 +78,7 @@ class Chapter extends React.Component {
             <ReadMore
               onClick={() => this.setExpanded()}
               isExpanded={isExpanded && isSubsectionsExpanded}
+              text={isExpanded && !isSubsectionsExpanded ? 'Continue reading' : isExpanded && isSubsectionsExpanded ? 'Collapse' : null}
             />
           </div>
           {hasAssignments
