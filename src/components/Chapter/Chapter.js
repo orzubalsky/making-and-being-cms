@@ -9,12 +9,23 @@ import './Chapter.scss'
 class Chapter extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { isExpanded: false }
+    this.state = {
+      isExpanded: false,
+      isSubsectionsExpanded: false
+    }
   }
 
   renderSubsection (section, index) {
+    const { isExpanded, isSubsectionsExpanded } = this.state
+
+    const className = [
+      'Subsection',
+      isExpanded && index === 0 ? 'Subsection--expanded' : null,
+      isSubsectionsExpanded ? 'Subsection--expanded' : null
+    ].join(' ')
+
     return (
-      <div className='Subsection' id={section.slug} key={section.slug}>
+      <div className={className} id={section.slug} key={section.slug}>
         { section.isnamevisible
           ? <h3 className='Subsection__name'>
               {`${section.name}`}
@@ -26,9 +37,19 @@ class Chapter extends React.Component {
     )
   }
 
+  setExpanded () {
+    const { item } = this.props
+    const { isExpanded, isSubsectionsExpanded } = this.state
+
+    !isExpanded && this.setState({ isExpanded: true })
+    !isExpanded && item.subsections.length <= 1 && this.setState({ isExpanded: true, isSubsectionsExpanded: true })
+    isExpanded && this.setState({ isSubsectionsExpanded: true })
+    isExpanded && isSubsectionsExpanded && this.setState({ isExpanded: false, isSubsectionsExpanded: false })
+  }
+
   render () {
     const { item } = this.props
-    const { isExpanded } = this.state
+    const { isExpanded, isSubsectionsExpanded  } = this.state
 
     const hasAssignments = item.assignments.length > 0
     const hasActivities = item.activities.length > 0
@@ -37,13 +58,14 @@ class Chapter extends React.Component {
     const className = [
       'Chapter',
       !isExpanded ? 'Chapter--collapsed' : null,
+      !isSubsectionsExpanded ? 'Chapter--subsections-collapsed' : null,
       hasActivities || hasAssignments || hasEvents ? 'Chapter--with-list' : null
     ].join(' ')
 
 
     return (
       <div className={className} id={item.slug}>
-        <div className='Chapter__header'>
+        <div className='Chapter__header' onClick={() => this.setExpanded()}>
           <h3 className='Chapter__number'>
             {`${item.position}`}
           </h3>
@@ -53,6 +75,10 @@ class Chapter extends React.Component {
         </div>
           <div className='Chapter__content'>
             {item.subsections.map((section, i) => this.renderSubsection(section, i))}
+            <ReadMore
+              onClick={() => this.setExpanded()}
+              isExpanded={isExpanded && isSubsectionsExpanded}
+            />
           </div>
           {hasAssignments
             ? <div className='List'>
@@ -81,16 +107,13 @@ class Chapter extends React.Component {
             </div>
             : null
           }
-        <ReadMore
-          onClick={() => this.setState({ isExpanded: !isExpanded })}
-          isExpanded={isExpanded}
-        />
       </div>
     )
   }
 }
 
 Chapter.propTypes = {
+  item: PropTypes.object
 }
 
 Chapter.defaultProps = {

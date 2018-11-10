@@ -8,7 +8,6 @@
   transition: all 0.2s;
 
   @include for-desktop-up() {
-    bottom: 0.25rem;
     right: 0.75rem;
   }
 
